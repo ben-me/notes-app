@@ -21,7 +21,7 @@ const Navbar = styled.nav`
   justify-content: center;
   align-items: center;
   top: 0;
-  background-color: lightblue;
+  background-color: #1976d2;
   height: 2.5rem;
   width: 100%;
   margin-bottom: 1rem;
