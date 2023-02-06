@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import InputNote from "./components/InputNote";
+import Container from "@mui/material/Container";
 
 function App() {
   return (
@@ -8,7 +9,9 @@ function App() {
         <NavText>Notes!</NavText>
       </Navbar>
       <main>
-        <InputNote />
+        <Container sx={{ display: "flex", justifyContent: "center" }}>
+          <InputNote />
+        </Container>
       </main>
     </>
   );

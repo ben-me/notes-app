@@ -32,9 +32,6 @@ export default function InputNote() {
 
 const InputForm = styled.form`
   display: flex;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   flex-direction: column;
   border-radius: 15px;
   padding: 1rem;
