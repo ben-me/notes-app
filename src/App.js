@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import InputNote from "./components/InputNote";
 import Container from "@mui/material/Container";
 import { useEffect, useState } from "react";
+import Note from "./components/Note";
 
 function App() {
   const [noteList, setNoteList] = useState(
@@ -13,16 +14,26 @@ function App() {
     localStorage.setItem("localNotes", JSON.stringify(noteList));
   }, [noteList]);
 
+  function deleteNote(noteID) {
+    const filteredNotes = noteList.filter((note) => note.id !== noteID);
+    console.log(filteredNotes);
+    setNoteList(filteredNotes);
+  }
+
   return (
     <>
       <Navbar>
         <NavText>Notes!</NavText>
       </Navbar>
       <main>
-        <Container sx={{ display: "flex", justifyContent: "center" }}>
+        <InputContainer>
           <InputNote onSetNoteList={setNoteList} noteList={noteList} />
-        </Container>
-        <section></section>
+        </InputContainer>
+        <NoteContainer>
+          {noteList.map((note) => (
+            <Note note={note} key={note.id} handleDelete={deleteNote} />
+          ))}
+        </NoteContainer>
       </main>
     </>
   );
@@ -45,4 +56,15 @@ const NavText = styled.h2`
   margin: 0;
   font-size: x-large;
   text-decoration: underline;
+`;
+
+const InputContainer = styled(Container)`
+  display: flex;
+  justify-content: center;
+`;
+
+const NoteContainer = styled(Container)`
+  display: flex;
+  gap: 20px;
+  margin: 2rem 0;
 `;
