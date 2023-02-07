@@ -2,27 +2,36 @@ import TextField from "@mui/material/TextField";
 import styled from "@emotion/styled";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { Button } from "@mui/material";
+import uuid from "react-uuid";
 
-export default function InputNote() {
+export default function InputNote({ onSetNoteList, noteList }) {
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const title = form.noteTitle.value;
+    const text = form.noteText.value;
+
+    const newNote = { id: uuid(), title, text };
+    if (newNote) {
+      onSetNoteList([newNote, ...noteList]);
+    }
+  }
+
   return (
-    <InputForm>
+    <InputForm onSubmit={(e) => handleSubmit(e)}>
+      <TextField id="noteTitle" placeholder="Titel..." variant="standard" />
       <TextField
-        id="standard-basic"
-        placeholder="Titel..."
-        variant="standard"
-      />
-      <TextField
-        id="standard-multiline-static"
+        id="noteText"
         multiline
         rows={4}
         placeholder="Text eingeben..."
         variant="standard"
       />
       <StyledButtonGroup>
-        <Button variant="contained" size="small">
+        <Button type="button" variant="contained" size="small">
           Cancel
         </Button>
-        <Button variant="contained" size="small">
+        <Button type="submit" variant="contained" size="small">
           Save
         </Button>
       </StyledButtonGroup>
