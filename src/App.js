@@ -1,8 +1,18 @@
 import styled from "@emotion/styled";
 import InputNote from "./components/InputNote";
 import Container from "@mui/material/Container";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [noteList, setNoteList] = useState(
+    JSON.parse(localStorage.getItem("localNotes")) || []
+  );
+
+  useEffect(() => {
+    console.log(noteList);
+    localStorage.setItem("localNotes", JSON.stringify(noteList));
+  }, [noteList]);
+
   return (
     <>
       <Navbar>
@@ -10,8 +20,9 @@ function App() {
       </Navbar>
       <main>
         <Container sx={{ display: "flex", justifyContent: "center" }}>
-          <InputNote />
+          <InputNote onSetNoteList={setNoteList} noteList={noteList} />
         </Container>
+        <section></section>
       </main>
     </>
   );
