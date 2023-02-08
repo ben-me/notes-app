@@ -17,8 +17,8 @@ export default function Note({ note, handleDelete }) {
       />
       <StyledCardContent>{note.text}</StyledCardContent>
       <CardActions>
-        <IconButton>
-          <DeleteTwoToneIcon onClick={() => handleDelete(note)} />
+        <IconButton onClick={() => handleDelete(note)}>
+          <DeleteTwoToneIcon />
         </IconButton>
       </CardActions>
     </NoteCard>

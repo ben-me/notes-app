@@ -18,11 +18,11 @@ export default function DeletedNote({ note, onClearFromTrash, onRecoverNote }) {
       />
       <StyledCardContent>{note.text}</StyledCardContent>
       <CardActions>
-        <IconButton>
-          <CloseTwoToneIcon onClick={() => onClearFromTrash(note)} />
+        <IconButton onClick={() => onClearFromTrash(note)}>
+          <CloseTwoToneIcon />
         </IconButton>
-        <IconButton>
-          <RestoreTwoToneIcon onClick={() => onRecoverNote(note)} />
+        <IconButton onClick={() => onRecoverNote(note)}>
+          <RestoreTwoToneIcon />
         </IconButton>
       </CardActions>
     </NoteCard>

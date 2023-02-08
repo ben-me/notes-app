@@ -27,7 +27,6 @@ export default function InputNote({ onSetNoteList, noteList }) {
   return (
     <InputForm onSubmit={(e) => handleSubmit(e)}>
       <TextField
-        type={String}
         id="noteTitle"
         placeholder="Titel..."
         variant="standard"
@@ -35,7 +34,6 @@ export default function InputNote({ onSetNoteList, noteList }) {
         onChange={(event) => setTitle(event.target.value)}
       />
       <TextField
-        type={String}
         id="noteText"
         multiline
         rows={4}
