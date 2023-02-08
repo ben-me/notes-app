@@ -3,33 +3,55 @@ import styled from "@emotion/styled";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { Button } from "@mui/material";
 import uuid from "react-uuid";
+import { useState } from "react";
 
 export default function InputNote({ onSetNoteList, noteList }) {
+  const [title, setTitle] = useState("");
+  const [text, setText] = useState("");
+
   function handleSubmit(e) {
     e.preventDefault();
-    const form = e.target;
-    const title = form.noteTitle.value;
-    const text = form.noteText.value;
-
     const newNote = { id: uuid(), title, text };
     if (newNote) {
       onSetNoteList([newNote, ...noteList]);
     }
+    setTitle("");
+    setText("");
+  }
+
+  function handleReset() {
+    setTitle("");
+    setText("");
   }
 
   return (
     <InputForm onSubmit={(e) => handleSubmit(e)}>
-      <TextField id="noteTitle" placeholder="Titel..." variant="standard" />
       <TextField
+        type={String}
+        id="noteTitle"
+        placeholder="Titel..."
+        variant="standard"
+        value={title}
+        onChange={(event) => setTitle(event.target.value)}
+      />
+      <TextField
+        type={String}
         id="noteText"
         multiline
         rows={4}
         placeholder="Text eingeben..."
         variant="standard"
+        value={text}
+        onChange={(event) => setText(event.target.value)}
       />
       <StyledButtonGroup>
-        <Button type="button" variant="contained" size="small">
-          Cancel
+        <Button
+          type="button"
+          variant="contained"
+          size="small"
+          onClick={handleReset}
+        >
+          Reset
         </Button>
         <Button type="submit" variant="contained" size="small">
           Save
