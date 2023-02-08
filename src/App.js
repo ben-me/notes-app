@@ -3,21 +3,35 @@ import InputNote from "./components/InputNote";
 import Container from "@mui/material/Container";
 import { useEffect, useState } from "react";
 import Note from "./components/Note";
+import DeletedNote from "./components/DeletedNote";
 
 function App() {
   const [noteList, setNoteList] = useState(
     JSON.parse(localStorage.getItem("localNotes")) || []
   );
+  const [noteBin, setNoteBin] = useState(
+    JSON.parse(localStorage.getItem("noteBin")) || []
+  );
 
   useEffect(() => {
-    console.log(noteList);
     localStorage.setItem("localNotes", JSON.stringify(noteList));
   }, [noteList]);
 
-  function deleteNote(noteID) {
-    const filteredNotes = noteList.filter((note) => note.id !== noteID);
-    console.log(filteredNotes);
+  useEffect(() => {
+    localStorage.setItem("noteBin", JSON.stringify(noteBin));
+  }, [noteBin]);
+
+  function deleteNote(deletedNote) {
+    const filteredNotes = noteList.filter((note) => note.id !== deletedNote.id);
     setNoteList(filteredNotes);
+    setNoteBin([deletedNote, ...noteBin]);
+  }
+
+  function clearFromTrash(selectedNote) {
+    const filteredNoteBin = noteBin.filter(
+      (note) => note.id !== selectedNote.id
+    );
+    setNoteBin(filteredNoteBin);
   }
 
   return (
@@ -32,6 +46,16 @@ function App() {
         <NoteContainer>
           {noteList.map((note) => (
             <Note note={note} key={note.id} handleDelete={deleteNote} />
+          ))}
+        </NoteContainer>
+        <h3>Recycle bin</h3>
+        <NoteContainer>
+          {noteBin.map((note) => (
+            <DeletedNote
+              note={note}
+              key={note.id}
+              onClearFromTrash={clearFromTrash}
+            />
           ))}
         </NoteContainer>
       </main>
