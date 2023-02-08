@@ -10,31 +10,45 @@ import styled from "@emotion/styled";
 import RestoreTwoToneIcon from "@mui/icons-material/RestoreTwoTone";
 import CloseTwoToneIcon from "@mui/icons-material/CloseTwoTone";
 
-export default function DeletedNote({ note, onClearFromTrash }) {
+export default function DeletedNote({ note, onClearFromTrash, onRecoverNote }) {
   return (
-    <Card sx={{ width: "250px" }}>
+    <NoteCard>
       <StyledCardHead
         title={note.title}
         avatar={<DescriptionTwoToneIcon />}
         disableTypography
       />
-      <CardContent sx={{ textDecoration: "line-through" }}>
-        {note.text}
-      </CardContent>
+      <StyledCardContent>{note.text}</StyledCardContent>
       <CardActions>
         <IconButton>
           <CloseTwoToneIcon onClick={() => onClearFromTrash(note)} />
         </IconButton>
         <IconButton>
-          <RestoreTwoToneIcon />
+          <RestoreTwoToneIcon onClick={() => onRecoverNote(note)} />
         </IconButton>
       </CardActions>
-    </Card>
+    </NoteCard>
   );
 }
+
+const NoteCard = styled(Card)`
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 14rem;
+  justify-content: space-between;
+  height: fit-content;
+  max-height: 250px;
+`;
 
 const StyledCardHead = styled(CardHeader)`
   overflow-wrap: anywhere;
   font-size: 1.1rem;
+  text-decoration: line-through;
+`;
+
+const StyledCardContent = styled(CardContent)`
+  overflow-wrap: anywhere;
+  overflow: auto;
   text-decoration: line-through;
 `;

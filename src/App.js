@@ -34,6 +34,14 @@ function App() {
     setNoteBin(filteredNoteBin);
   }
 
+  function recoverNote(recoveredNote) {
+    const filteredNoteBin = noteBin.filter(
+      (note) => note.id !== recoveredNote.id
+    );
+    setNoteList([recoveredNote, ...noteList]);
+    setNoteBin(filteredNoteBin);
+  }
+
   return (
     <>
       <Navbar>
@@ -55,6 +63,7 @@ function App() {
               note={note}
               key={note.id}
               onClearFromTrash={clearFromTrash}
+              onRecoverNote={recoverNote}
             />
           ))}
         </NoteContainer>
