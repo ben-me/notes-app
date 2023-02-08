@@ -12,11 +12,15 @@ import DeleteTwoToneIcon from "@mui/icons-material/DeleteTwoTone";
 export default function Note({ note, handleDelete }) {
   return (
     <NoteCard>
-      <StyledCardHead avatar={<DescriptionTwoToneIcon />} title={note.title} />
-      <CardContent>{note.text}</CardContent>
+      <StyledCardHead
+        avatar={<DescriptionTwoToneIcon />}
+        title={note.title}
+        disableTypography
+      />
+      <StyledCardContent>{note.text}</StyledCardContent>
       <CardActions>
         <IconButton>
-          <DeleteTwoToneIcon onClick={() => handleDelete(note.id)} />
+          <DeleteTwoToneIcon onClick={() => handleDelete(note)} />
         </IconButton>
       </CardActions>
     </NoteCard>
@@ -24,9 +28,21 @@ export default function Note({ note, handleDelete }) {
 }
 
 const NoteCard = styled(Card)`
-  width: 250px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 14rem;
+  justify-content: space-between;
+  height: fit-content;
+  max-height: 250px;
 `;
 
 const StyledCardHead = styled(CardHeader)`
-  font-size: 1.2rem;
+  overflow-wrap: anywhere;
+  font-size: 1.1rem;
+`;
+
+const StyledCardContent = styled(CardContent)`
+  overflow-wrap: anywhere;
+  overflow: auto;
 `;
