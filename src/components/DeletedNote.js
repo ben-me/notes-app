@@ -1,10 +1,8 @@
-import {
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  IconButton,
-} from "@mui/material";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import IconButton from "@mui/material/IconButton";
 import DescriptionTwoToneIcon from "@mui/icons-material/DescriptionTwoTone";
 import styled from "@emotion/styled";
 import RestoreTwoToneIcon from "@mui/icons-material/RestoreTwoTone";

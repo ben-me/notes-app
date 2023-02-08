@@ -1,12 +1,10 @@
 import styled from "@emotion/styled";
 import DescriptionTwoToneIcon from "@mui/icons-material/DescriptionTwoTone";
-import {
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  IconButton,
-} from "@mui/material";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import IconButton from "@mui/material/IconButton";
 import DeleteTwoToneIcon from "@mui/icons-material/DeleteTwoTone";
 
 export default function Note({ note, handleDelete }) {
