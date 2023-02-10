@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import DescriptionTwoToneIcon from "@mui/icons-material/DescriptionTwoTone";
 import Card from "@mui/material/Card";
+import React from "react";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";

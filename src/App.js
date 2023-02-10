@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import React from "react";
 import InputNote from "./components/InputNote";
 import Container from "@mui/material/Container";
 import { useEffect, useState } from "react";
